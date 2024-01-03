@@ -34,7 +34,7 @@ class CreateSchedule extends CreateRecord
             $newScheduleEndTime = Carbon::now()->setTimeFromTimeString($time)->addMinutes($durationMinutes);
 
             $existingScheduleStartTime = Carbon::now()->setTimeFromTimeString($schedule->time);
-            $existingScheduleEndTime = Carbon::now()->setTimeFromTimeString($schedule->time)->addMinutes($schedule->duration);
+            $existingScheduleEndTime = Carbon::now()->setTimeFromTimeString($schedule->time)->addMinutes($schedule->duration)->subSecond(); // we use subSecond, so if schedule ends at 13.30, it will be 13.29.59, so we could easly add a next schedule at 13.30
 
             $startTimeCollide = $newScheduleStartTime->between($existingScheduleStartTime, $existingScheduleEndTime);
             $endTimeCollide = $newScheduleEndTime->between($existingScheduleStartTime, $existingScheduleEndTime);
