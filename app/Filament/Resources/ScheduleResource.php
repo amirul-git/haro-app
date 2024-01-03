@@ -61,7 +61,7 @@ class ScheduleResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('lecturer.name'),
-                TextColumn::make('user.name'),
+                TextColumn::make('user.name')->label('Student'),
                 TextColumn::make('day.name'),
                 TextColumn::make('time')->label('Starts'),
                 TextColumn::make('endTime')->label('Ends'),
