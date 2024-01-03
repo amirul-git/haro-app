@@ -21,12 +21,14 @@ class UserSeeder extends Seeder
         Permission::create(['name' => 'update schedules']);
         Permission::create(['name' => 'delete schedules']);
 
-        // create role
         $adminRole = Role::create(['name' => 'admin']);
         $adminRole->givePermissionTo('create schedules');
         $adminRole->givePermissionTo('read schedules');
         $adminRole->givePermissionTo('update schedules');
         $adminRole->givePermissionTo('delete schedules');
+
+        $studentRole = Role::create(['name' => 'student']);
+        $lecturerRole = Role::create(['name' => 'lecturer']);
 
         $user = User::create([
             'name' => 'admin',
