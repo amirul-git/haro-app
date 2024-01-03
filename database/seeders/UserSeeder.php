@@ -30,12 +30,47 @@ class UserSeeder extends Seeder
         $studentRole = Role::create(['name' => 'student']);
         $lecturerRole = Role::create(['name' => 'lecturer']);
 
-        $user = User::create([
+        // create a lecturer seeder
+        $admin = User::create([
             'name' => 'admin',
             'email' => 'admin',
             'password' => bcrypt('password')
         ]);
 
-        $user->assignRole($adminRole);
+        $admin->assignRole($adminRole);
+
+        // create a lecturer seeder
+        $lecturer = User::create([
+            'name' => 'amir',
+            'email' => 'amir@mail.com',
+            'password' => bcrypt('password')
+        ]);
+
+        $lecturer->assignRole($lecturerRole);
+
+        $lecturer = User::create([
+            'name' => 'adip',
+            'email' => 'adip@mail.com',
+            'password' => bcrypt('password')
+        ]);
+
+        $lecturer->assignRole($lecturerRole);
+
+        // create a student seeder
+        $student = User::create([
+            'name' => 'neo',
+            'email' => 'neo@mail.com',
+            'password' => bcrypt('password')
+        ]);
+
+        $student->assignRole($studentRole);
+
+        $student = User::create([
+            'name' => 'budi',
+            'email' => 'budi@mail.com',
+            'password' => bcrypt('password')
+        ]);
+
+        $student->assignRole($studentRole);
     }
 }
