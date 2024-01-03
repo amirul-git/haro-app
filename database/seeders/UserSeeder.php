@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
         // create a lecturer seeder
         $admin = User::create([
             'name' => 'admin',
-            'email' => 'admin',
+            'email' => 'admin@mail.com',
             'password' => bcrypt('password')
         ]);
 
