@@ -63,7 +63,8 @@ class ScheduleResource extends Resource
                 TextColumn::make('lecturer.name'),
                 TextColumn::make('user.name'),
                 TextColumn::make('day.name'),
-                TextColumn::make('time'),
+                TextColumn::make('time')->label('Starts'),
+                TextColumn::make('endTime')->label('Ends'),
                 TextColumn::make('duration')->label('Duration (minutes)'),
                 TextColumn::make('link'),
             ])
