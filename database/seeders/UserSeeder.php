@@ -43,7 +43,8 @@ class UserSeeder extends Seeder
         $lecturer = User::create([
             'name' => 'amir',
             'email' => 'amir@mail.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'phone' => '85179610256'
         ]);
 
         $lecturer->assignRole($lecturerRole);
@@ -51,7 +52,8 @@ class UserSeeder extends Seeder
         $lecturer = User::create([
             'name' => 'adip',
             'email' => 'adip@mail.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'phone' => '85179610256'
         ]);
 
         $lecturer->assignRole($lecturerRole);
@@ -60,7 +62,8 @@ class UserSeeder extends Seeder
         $student = User::create([
             'name' => 'neo',
             'email' => 'neo@mail.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'phone' => '85179610256'
         ]);
 
         $student->assignRole($studentRole);
@@ -68,7 +71,8 @@ class UserSeeder extends Seeder
         $student = User::create([
             'name' => 'budi',
             'email' => 'budi@mail.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'phone' => '85179610256'
         ]);
 
         $student->assignRole($studentRole);
