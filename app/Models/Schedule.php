@@ -20,7 +20,7 @@ class Schedule extends Model
         );
     }
 
-    protected function EndTime(): Attribute
+    protected function endTime(): Attribute
     {
         return Attribute::make(
             get: function (mixed $value, array $attributes) {
