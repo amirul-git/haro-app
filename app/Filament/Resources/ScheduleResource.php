@@ -52,7 +52,6 @@ class ScheduleResource extends Resource
                 TimePicker::make('time')->prefix('Starts')
                     ->required(),
                 TextInput::make('duration')->label('Duration (minutes)')->numeric()->required()->default(90),
-                TextInput::make('link')->required()
             ]);
     }
 

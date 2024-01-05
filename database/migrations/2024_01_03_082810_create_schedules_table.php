@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignId('day_id')->constrained();
             $table->time('time');
             $table->integer('duration');
-            $table->string('link');
+            $table->string('link')->nullable();
             $table->timestamps();
         });
     }
