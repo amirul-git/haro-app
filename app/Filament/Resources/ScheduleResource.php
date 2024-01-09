@@ -16,6 +16,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -67,16 +68,31 @@ class ScheduleResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('lecturer.name'),
-                TextColumn::make('user.name')->label('Student'),
+                TextColumn::make('lecturer.name')->searchable(),
+                TextColumn::make('user.name')->label('Student')->searchable(),
                 TextColumn::make('day.name'),
-                TextColumn::make('time')->label('Starts'),
-                TextColumn::make('endTime')->label('Ends'),
-                TextColumn::make('duration')->label('Duration (minutes)'),
+                TextColumn::make('time')->label('Starts')->sortable(),
+                TextColumn::make('endTime')->label('Ends')->sortable(),
+                TextColumn::make('duration')->label('Duration (minutes)')->sortable(),
                 TextColumn::make('link.name'),
             ])
             ->filters([
-                //
+                SelectFilter::make('lecturer')
+                    ->relationship('lecturer', 'name', fn () => User::role('lecturer'))
+                    ->searchable()
+                    ->preload(),
+                SelectFilter::make('student')
+                    ->relationship('user', 'name')
+                    ->searchable()
+                    ->preload(),
+                SelectFilter::make('day')
+                    ->relationship('day', 'name')
+                    ->searchable()
+                    ->preload(),
+                SelectFilter::make('link')
+                    ->relationship('link', 'name')
+                    ->searchable()
+                    ->preload()
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
