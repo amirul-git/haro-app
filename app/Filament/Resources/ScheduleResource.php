@@ -78,7 +78,7 @@ class ScheduleResource extends Resource
             ])
             ->filters([
                 SelectFilter::make('lecturer')
-                    ->relationship('lecturer', 'name', fn () => User::role('lecturer'))
+                    ->relationship('lecturer', 'name')
                     ->searchable()
                     ->preload(),
                 SelectFilter::make('student')
