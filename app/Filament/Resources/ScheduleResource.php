@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ScheduleResource\Pages;
 use App\Filament\Resources\ScheduleResource\RelationManagers;
 use App\Models\Day;
+use App\Models\Link;
 use App\Models\Schedule;
 use App\Models\User;
 use Filament\Forms;
@@ -52,6 +53,13 @@ class ScheduleResource extends Resource
                 TimePicker::make('time')->prefix('Starts')
                     ->required(),
                 TextInput::make('duration')->label('Duration (minutes)')->numeric()->required()->default(90),
+                Select::make('link_id')
+                    ->label('Link')
+                    ->options(Link::all()->pluck('name', 'id'))
+                    ->searchable()
+                    ->preload()
+                    ->required()
+                    ->default(1),
             ]);
     }
 
@@ -65,7 +73,7 @@ class ScheduleResource extends Resource
                 TextColumn::make('time')->label('Starts'),
                 TextColumn::make('endTime')->label('Ends'),
                 TextColumn::make('duration')->label('Duration (minutes)'),
-                TextColumn::make('link'),
+                TextColumn::make('link.name'),
             ])
             ->filters([
                 //

@@ -11,7 +11,7 @@ class Schedule extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['lecturer_id', 'user_id', 'day_id', 'time', 'duration', 'link'];
+    protected $fillable = ['lecturer_id', 'user_id', 'day_id', 'time', 'duration', 'link_id'];
 
     protected function time(): Attribute
     {
@@ -46,5 +46,10 @@ class Schedule extends Model
     public function day()
     {
         return $this->belongsTo(Day::class);
+    }
+
+    public function link()
+    {
+        return $this->belongsTo(Link::class);
     }
 }
