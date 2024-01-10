@@ -38,7 +38,7 @@ class SendSchedules extends Command
         $twilio = new Client($sid, $token);
 
         $todaySchedules->each(function ($schedule) use ($twilio) {
-            $bodyForStudent = "Haloo {$schedule->user->name},\nKamu hari ini ada jadwal belajar dengan kak {$schedule->lecturer->name} di jam {$schedule->time}-{$schedule->end_time}, berikut link zoom meetingnya yaa:\n\n{$schedule->link}\n\nSemangat belajarnya dek 💪😊";
+            $bodyForStudent = "Haloo {$schedule->user->name},\nKamu hari ini ada jadwal belajar dengan kak {$schedule->lecturer->name} di jam {$schedule->time}-{$schedule->end_time}, berikut link zoom meetingnya yaa:\n\n{$schedule->link->link}\n\nSemangat belajarnya dek 💪😊";
 
             // student
             $message = $twilio->messages
@@ -51,7 +51,7 @@ class SendSchedules extends Command
                     )
                 );
 
-            $bodyForLecturer = "Selamat pagi kak {$schedule->lecturer->name}\n\nKakak ada jadwal mengajar siswa {$schedule->user->name} hari ini di jam {$schedule->time}-{$schedule->end_time} nih, jangan lupa disiapkan materi dan pembelajarannya yaa kak. semangat mengajar hari ini 💪😊\n\nberikut link zoom meetingnya:\n{$schedule->link}\n\nTerima kasih 💪😊";
+            $bodyForLecturer = "Selamat pagi kak {$schedule->lecturer->name}\n\nKakak ada jadwal mengajar siswa {$schedule->user->name} hari ini di jam {$schedule->time}-{$schedule->end_time} nih, jangan lupa disiapkan materi dan pembelajarannya yaa kak. semangat mengajar hari ini 💪😊\n\nberikut link zoom meetingnya:\n{$schedule->link->link}\n\nTerima kasih 💪😊";
 
             // lecturer
             $message = $twilio->messages
