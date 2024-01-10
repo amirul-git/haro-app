@@ -34,6 +34,11 @@ class CreateSchedule extends CreateRecord
         $isMainLinkUsed = $this->isMainLinkUsed($schedules, $data);
 
         if ($isMainLinkUsed) {
+            Notification::make()
+                ->title("Changing to secondary link due to main link is taken")
+                ->info()
+                ->send();
+
             $data['link_id'] = 2;
             return $data;
         } else {
@@ -73,7 +78,7 @@ class CreateSchedule extends CreateRecord
 
     private function isMainLinkUsed(Collection $schedules, $data)
     {
-        return $schedules->each(function ($schedule) use ($data) {
+        return $schedules->contains(function ($schedule) use ($data) {
 
             // check if a new schedules starttime and endtime in between of existing schedule
 
@@ -92,15 +97,7 @@ class CreateSchedule extends CreateRecord
             $startTimeCollide = $newScheduleStartTime->between($existingScheduleStartTime, $existingScheduleEndTime);
             $endTimeCollide = $newScheduleEndTime->between($existingScheduleStartTime, $existingScheduleEndTime);
 
-            if ($startTimeCollide || $endTimeCollide) {
-                Notification::make()
-                    ->title("Changing to secondary link due to main link is taken")
-                    ->info()
-                    ->send();
-                return true;
-            } else {
-                return false;
-            }
+            return $startTimeCollide || $endTimeCollide;
         });
     }
 }
