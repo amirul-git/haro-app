@@ -27,23 +27,24 @@ class CreateSchedule extends CreateRecord
         $schedules = Schedule::where(['day_id' => $dayID])->get();
 
         // send notification and halt the process if there's a collision on schedule
-        $this->haltOnScheduleCollision($lecturer_schedules, $data, "Lecturer already have a schedule at that time span");
+        // $this->haltOnScheduleCollision($lecturer_schedules, $data, "Lecturer already have a schedule at that time span");
         $this->haltOnScheduleCollision($student_schedules, $data, "Student already have a schedule at that time span");
 
         // change to secondary link if there's a taken schedule with different lecturer and student
-        $isMainLinkUsed = $this->isMainLinkUsed($schedules, $data);
+        // $isMainLinkUsed = $this->isMainLinkUsed($schedules, $data);
 
-        if ($isMainLinkUsed) {
-            Notification::make()
-                ->title("Changing to secondary link due to main link is taken")
-                ->info()
-                ->send();
+        // if ($isMainLinkUsed) {
+        //     Notification::make()
+        //         ->title("Changing to secondary link due to main link is taken")
+        //         ->info()
+        //         ->send();
 
-            $data['link_id'] = 2;
-            return $data;
-        } else {
-            return $data;
-        }
+        //     $data['link_id'] = 2;
+        //     return $data;
+        // } else {
+        //     return $data;
+        // }
+        return $data;
     }
 
     private function haltOnScheduleCollision(Collection $schedules, array $data, string $message)
